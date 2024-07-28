@@ -4,8 +4,8 @@ using static UnityEngine.Mathf;
 public static class FunctionLibrary
 {
     public delegate Vector3 Function(float u, float v, float t);
-    public enum FunctionName { Wave, MultiWave, Ripple, Sphere };
-    static Function[] functions = { Wave, MultiWave, Ripple, Sphere };
+    public enum FunctionName { Wave, MultiWave, Ripple, Sphere, Torus };
+    static Function[] functions = { Wave, MultiWave, Ripple, Sphere, Torus };
 
     public static Function GetFunction(FunctionName name)
     {
@@ -51,6 +51,18 @@ public static class FunctionLibrary
 		Vector3 p;
 		p.x = s * Sin(PI * u);
 		p.y = r * Sin(0.5f * PI * v);
+		p.z = s * Cos(PI * u);
+        return p;
+    }
+
+    public static Vector3 Torus(float u, float v, float t)
+    {
+        float r1 = 0.7f + 0.1f * Sin(PI * (6f * u + 0.5f * t));
+		float r2 = 0.15f + 0.05f * Sin(PI * (8f * u + 4f * v + 2f * t));
+		float s = r1 + r2 * Cos(PI * v);
+		Vector3 p;
+		p.x = s * Sin(PI * u);
+		p.y = r2 * Sin(PI * v);
 		p.z = s * Cos(PI * u);
         return p;
     }
