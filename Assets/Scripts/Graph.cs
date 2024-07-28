@@ -9,10 +9,10 @@ public class Graph : MonoBehaviour
     int resolution = 10;
 
     [SerializeField]
-    bool linear = false;
+    bool sineWave = false;
 
     [SerializeField]
-    bool parabola = false;
+    bool multiWave = false;
 
     [SerializeField]
     bool cubic = false;
@@ -44,16 +44,14 @@ public class Graph : MonoBehaviour
         for (int i = 0; i < points.Length; i++)
         {
             Vector3 position = points[i].localPosition;
-            if (linear)
+            if (sineWave)
             {
-                // Linear = Y equals X
-                position.y = Mathf.Sin(Mathf.PI * (position.x + time));
+                position.y = FunctionLibrary.Wave(position.x, time);
             }
 
-            if (parabola)
+            if (multiWave)
             {
-                // Parabola = Y equals X²
-                position.y = Mathf.Sin(Mathf.PI * (position.x * position.x + time));
+                position.y = FunctionLibrary.MultiWave(position.x, time);
             }
 
             if (cubic)
