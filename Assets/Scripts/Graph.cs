@@ -15,7 +15,7 @@ public class Graph : MonoBehaviour
     bool multiWave = false;
 
     [SerializeField]
-    bool cubic = false;
+    bool ripple = false;
 
     Transform[] points;
 
@@ -54,10 +54,9 @@ public class Graph : MonoBehaviour
                 position.y = FunctionLibrary.MultiWave(position.x, time);
             }
 
-            if (cubic)
+            if (ripple)
             {
-                // Cubic = Y equals X³
-                position.y = Mathf.Sin(Mathf.PI * (position.x * position.x * position.x + time));
+                position.y = FunctionLibrary.Ripple(position.x, time);
             }
 
             points[i].localPosition = position;
