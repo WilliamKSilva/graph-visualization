@@ -9,13 +9,7 @@ public class Graph : MonoBehaviour
     int resolution = 10;
 
     [SerializeField]
-    bool sineWave = false;
-
-    [SerializeField]
-    bool multiWave = false;
-
-    [SerializeField]
-    bool ripple = false;
+    FunctionLibrary.FunctionName function;
 
     Transform[] points;
 
@@ -41,23 +35,11 @@ public class Graph : MonoBehaviour
     void Update()
     {
         float time = Time.time;
+        FunctionLibrary.Function f = FunctionLibrary.GetFunction(function);
         for (int i = 0; i < points.Length; i++)
         {
             Vector3 position = points[i].localPosition;
-            if (sineWave)
-            {
-                position.y = FunctionLibrary.Wave(position.x, time);
-            }
-
-            if (multiWave)
-            {
-                position.y = FunctionLibrary.MultiWave(position.x, time);
-            }
-
-            if (ripple)
-            {
-                position.y = FunctionLibrary.Ripple(position.x, time);
-            }
+            position.y = f(position.x, time);
 
             points[i].localPosition = position;
         }
