@@ -6,6 +6,7 @@ This is a function Graph visualization, we currently have three available, you c
 - Sine Wave 
 - Multi Sine Wave 
 - Ripple Wave 
+- Sphere Wave 
 
 This project has two versions of the same Shader that are used to make the Graph colorful:
   - The first is the PointSurface.shader, that makes use of the Default Unity render pipeline, built directly with shader language code
